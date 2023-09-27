@@ -35,6 +35,7 @@ else (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
       /usr/include
       /usr/local/include
       /opt/local/include
+      /opt/homebrew/opt/zmq/include
   )
 
   find_library(ZeroMQ_LIBRARY
@@ -46,6 +47,7 @@ else (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
       /usr/local/lib
       /opt/local/lib
       /sw/lib
+      /opt/homebrew/opt/zmq/lib
   )
 
   set(ZeroMQ_INCLUDE_DIRS
@@ -66,4 +68,7 @@ else (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
   mark_as_advanced(ZeroMQ_INCLUDE_DIRS ZeroMQ_LIBRARIES)
 
 endif (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
+
+set(ZeroMQ_FOUND TRUE)
+
 endif(ZeroMQ_FOUND)

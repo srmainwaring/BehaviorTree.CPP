@@ -40,6 +40,21 @@ endif()
 #---- Find other packages ----
 find_package(Threads REQUIRED)
 
+find_package(ZeroMQ)
+
+if( ${ZeroMQ_FOUND} )
+    message(STATUS "ZeroMQ: found.")
+    add_definitions( -DZMQ_FOUND )
+    # list(APPEND BT_SOURCE src/loggers/bt_zmq_publisher.cpp)
+
+    # TODO: patch for macOS
+    include_directories(${ZeroMQ_INCLUDE_DIRS})
+    link_libraries(${ZeroMQ_LIBRARies})
+    message("ZeroMQ_INCLUDE_DIRS: ${ZeroMQ_INCLUDE_DIRS}")
+    message("ZeroMQ_LIBRARies: ${ZeroMQ_LIBRARies}")
+else()
+    message(WARNING "ZeroMQ NOT found. Skipping the build of [PublisherZMQ] and [bt_recorder].")
+endif()
 
 set(BEHAVIOR_TREE_LIBRARY ${PROJECT_NAME})
 
