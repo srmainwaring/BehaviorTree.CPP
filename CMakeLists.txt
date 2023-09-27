@@ -61,6 +61,12 @@ if( ZMQ_FOUND )
     message(STATUS "ZeroMQ: found.")
     add_definitions( -DZMQ_FOUND )
     list(APPEND BT_SOURCE src/loggers/bt_zmq_publisher.cpp)
+
+    # TODO: patch for macOS
+    include_directories(${ZMQ_INCLUDE_DIR})
+    link_libraries(${ZMQ_LIBRARY})
+    message("ZMQ_INCLUDE_DIR: ${ZMQ_INCLUDE_DIR}")
+    message("ZMQ_LIBRARY: ${ZMQ_LIBRARY}")
 else()
     message(WARNING "ZeroMQ NOT found. Skipping the build of [PublisherZMQ] and [bt_recorder].")
 endif()
